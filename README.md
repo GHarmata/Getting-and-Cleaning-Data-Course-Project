@@ -5,7 +5,7 @@ Project for the Coursera course entitled "Getting and Cleaning Data" using Samsu
 ###Background
 The script run_analysis.R has been written to work with the *Human Activity Recognition Using Smartphones Dataset* (hereafter referred to as the "accelerometer dataset").  This data set contains Samsung Galaxy S accelerometer and gyroscope readings obtained when worn by human participants during various activities.  The data was collected and compiled by researchers Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca Oneto; their related publication is cited below [1]. More information about the dataset can be found at <a>http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones.</a>
 
-###run.analysis.R
+###run_analysis.R
 The general purpose of the run_analysis.R script is to download the accelerometer dataset, tidy up the contained information, and create a data frame containing specific averages.
 
 This purpose can be broken down into the following specific steps:
@@ -28,12 +28,7 @@ This purpose can be broken down into the following specific steps:
 
 Only functions from the base and utils packages in R were used to create the script.  Thus, anyone using this script should not have to download any additional packages or load packages into R.  While some parts of the code may have been made more efficient or condensed by packages such as dplyr, the convenience to a given user of using more typical functions outweighed such benefits.
 
-
-
-
-
-
-
+The "download" argument was included in the script to give the user the option to not re-download the entire dataset zip file.  If the user does not include the "download" argument when calling the function, the dataset is automatically downloaded, overwriting the previous zip file (if present).  Regardless of the value of the "download" argument, the zip file will automatically be downloaded and unzipped if R does not detect an existing copy of the unzipped dataset directory in the user's working directory.  
 
 
 
