@@ -23,6 +23,8 @@ This purpose can be broken down into the following specific steps:
 
 Currently, run_analysis.R is in the form of a function with a single optional argument (download).  To use, run the function in R, then type run_analysis() in the console.  The preferred options for the download argument are "yes" and "no".  The only reason to use the download argument would be in an instance in which the user had already downloaded the dataset to the working directory of R.
 
+Please keep in mind that the resulting data frame contains the means of all the variables (thus containing many means of means) across all subject number-activity type combinations. 
+
 
 ##### Rationale for modifications to variable names
 
@@ -49,7 +51,7 @@ indicate the intended separation of parts of the variable name.
 
 ##### Future goals for the script
 
-Currently, the complete execution of the script (with the downloading of the dataset) takes several minutes.  Improving efficiency would be a desired next step in the development of run_analysis.R.
+Currently, the complete execution of the script (with the downloading of the dataset) takes several minutes.  Improving efficiency would be a desired next step in the development of run_analysis.R.  It is possible that this would require additional packages such as dplyr.
 
 
 ##### Helpful resources 
@@ -59,6 +61,9 @@ I would like to thank the many Coursera users posting helpful questions, comment
 The following links were also helpful in the development of this script:
 
 - <a> http://stackoverflow.com/questions/10904124/global-and-local-variables-in-r </a> 
+- <a> https://stat.ethz.ch/pipermail/r-help/2011-September/288780.html </a>
+- <a> http://stackoverflow.com/questions/8942670/split-dataframe-using-two-columns-of-data-and-apply-common-transformation-on-lis </a>
+- <a> https://ramnathv.github.io/pycon2014-r/explore/sac.html
 
 
 ---------------
