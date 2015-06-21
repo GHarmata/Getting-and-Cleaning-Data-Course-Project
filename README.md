@@ -4,9 +4,9 @@
 Project for the Coursera course entitled "Getting and Cleaning Data" using Samsung Galaxy S accelerometer and gyroscope data.
 
 ### Important note
-```
-Work on this project commenced during the May 2015 session of the Coursera course "Getting and Cleaning Data."  Due to life circumstances, I unenrolled in that session of the course, and enrolled in the June 2015 session of the course.  Thus, commits have been made to this repository prior to the start of the June session as a result of my prior work, and is not taken from the work of any other person.
-```
+
+>Work on this project commenced during the May 2015 session of the Coursera course "Getting and Cleaning Data."  Due to life circumstances, I unenrolled in that session of the course, and enrolled in the June 2015 session of the course.  Thus, commits have been made to this repository prior to the start of the June session as a result of my prior work, and is not taken from the work of any other person.
+
 
 
 ###Background
