@@ -24,7 +24,7 @@ This purpose can be broken down into the following specific steps:
 3. Combine the training data and the testing data together into one large data frame, only keeping variables containing means and standard deviations.  
 4. Replace the coded numbers for the activities performed with text describing the activities performed (e.g., instead of "1", replace with "walking").
 5. Replace or modify the existing measurement variable names to make them more readable and in-line with conventions for variable names in R (i.e., no mathematical symbols or parentheses).  Explanations regarding the changes can be found below.
-6. Generate a new data frame containing the average measurements for each of the 30 subjects for each of 6 activity types.
+6. Generate a new data frame containing the average measurements for each of the 30 subjects for each of 6 activity types, giving a total of 180 rows (30 subjects x 6 activities = 180).
 
 
 ##### Instructions for use
