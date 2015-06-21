@@ -1,4 +1,4 @@
-# Getting-and-Cleaning-Data-Course-Project
+# Getting-and-Cleaning-Data Course Project
 ================
 
 Project for the Coursera course entitled "Getting and Cleaning Data" using Samsung Galaxy S accelerometer and gyroscope data.
@@ -10,7 +10,7 @@ Project for the Coursera course entitled "Getting and Cleaning Data" using Samsu
 
 
 ###Background
-The script run_analysis.R has been written to work with the *Human Activity Recognition Using Smartphones Dataset* (hereafter referred to as the "UCI HAR dataset").  This data set contains Samsung Galaxy S accelerometer and gyroscope readings obtained when worn by human participants during various activities.  The data was collected and compiled by researchers Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca Oneto; their related publication is cited below [1].[^1] More information about the dataset can be found at <a>http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones.</a>
+The script [run_analysis.R](https://github.com/GHarmata/Getting-and-Cleaning-Data-Course-Project/blob/master/run_analysis.R) has been written to work with the *Human Activity Recognition Using Smartphones Dataset* (hereafter referred to as the "UCI HAR dataset").  This data set contains Samsung Galaxy S accelerometer and gyroscope readings obtained when worn by human participants during various activities.  The data was collected and compiled by researchers Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca Oneto; their related publication is cited below [1].[^1] More information about the dataset can be found at <a>http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones.</a>
 
 
 ###run_analysis.R
@@ -29,13 +29,13 @@ This purpose can be broken down into the following specific steps:
 
 ##### Instructions for use
 
-Currently, run_analysis.R is in the form of a function with a single optional argument (download).  To use, run the function in R, then type run_analysis() in the console.  The preferred options for the download argument are "yes" and "no".  The only reason to use the download argument would be in an instance in which the user had already downloaded the dataset to the working directory of R.
+Currently, run_analysis.R is in the form of a function with a single optional argument ("download").  To use, run the function in R, then type run_analysis() in the console.  The preferred options for the download argument are "yes" and "no".  The only reason to use the download argument would be in an instance in which the user had already downloaded the dataset to the working directory of R.
 
-Please keep in mind that the resulting data frame contains the means of all the variables (thus containing many means of means) across all subject number-activity type combinations. 
+Please keep in mind that the resulting data frame contains the means of all the variables (thus containing many means of means) across all subject number-activity type combinations. The resulting data frame will print to the console, and will also be stored as the data frame run_analysis_res.
 
 
 ##### Codebook and additional variable information
-The codebook for the variables described by the output of run_analysis.R is available in the Git repository located at <a>https://github.com/GHarmata/Getting-and-Cleaning-Data-Course-Project.git</a>. However, the codebook does not elaborate on how measures such as "Jerk" were obtained.
+The codebook for the variables described by the output of run_analysis.R is also available in this git repository [(here)](https://github.com/GHarmata/Getting-and-Cleaning-Data-Course-Project/blob/master/Codebook.md)  .  However, the codebook does not elaborate on how measures such as "Jerk" were obtained.  
 
 According to the documentation for the UCI HAR dataset [1], especially the README.txt file, the following steps were undertaken to obtain the data that will be output by run_analysis.R:
 
@@ -45,13 +45,13 @@ According to the documentation for the UCI HAR dataset [1], especially the READM
 
 - Jerk signals were calculated by combining the data from all three directions (X, Y, and Z) for body acceleration (from the accelerometer) and angular velocity (from the gyroscope).  
 
-- The magnitudes of the combined, three-direction (X, Y, and Z) signals and the obtained Jerk signals were found using the "Euclidean norm." ............ # **what is that?**
+- The magnitudes of the combined, three-direction (X, Y, and Z) signals and the obtained Jerk signals were found using the "Euclidean norm." (more information on the Euclidean norm can be found [here](https://en.wikipedia.org/?title=Norm_%28mathematics%29)).
 
-- The angle between the vectors of various signal combination pairs was calculated ......... # **why?**
+- The angles between the vectors of various signal combination pairs were calculated.  Presumably, this was done to examine the potential interactions between signal measurements; however, the rationale is not explained in the original documentation. 
 
-- gravMean ........# **fill in stuff**
+- The arguments for the angle calculations were found by taking signal averages from sample windows, in some ways similar to a [moving average](http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc42.htm).  
 
-- Each variable, referred to as a "feature," was "normalized and bounded within [-1,1]" [1]. ........ # **what does this mean?**
+- Each variable, referred to as a "feature," was "normalized and bounded within [-1,1]" [1]. This was presumably done for easier comparison and more intuitive statistical analyses.
 
 
 ##### Rationale for modifications to variable names
@@ -72,21 +72,22 @@ indicate the intended separation of parts of the variable name.
 
 ##### Notes on specific coding decisions
 
-- Only functions from the base and utils packages in R were used to create the script.  Thus, anyone using this script should not have to download any additional packages or load packages into R.  While some parts of the code may have been made more efficient or condensed by packages such as dplyr, the convenience to a given user of using more typical functions outweighed such benefits.
+- Only functions from the base and utils packages in R were used to create the script.  Thus, anyone using this script should not have to download any additional packages or load packages into R.  While some parts of the code may have been made more efficient or condensed by packages such as dplyr, I believed the convenience to a given user of using more typical functions might outweigh such benefits.
 
-- The script is in the form of a function, instead of a stand-alone script.  This was done in order to allow the user to have some flexibility in whether or not to work with a preexisting version of hte data set.
+- The script is in the form of a function, instead of a stand-alone script.  This was done in order to allow the user to have some flexibility in whether or not to work with a preexisting version of the data set, using syntax for input with which I was familiar.
 
 - The "download" argument was included in the script to give the user the option to not re-download the entire dataset zip file. If the user does not include the "download" argument when calling the function, the dataset is automatically downloaded, overwriting the previous zip file (if present). Regardless of the value of the "download" argument, the zip file will automatically be downloaded and unzipped if R does not detect an existing copy of the unzipped dataset directory in the user's working directory.  
+
+- If the user does decide to re-download the entire dataset zip file while using run_analysis.R, the script will also save the time and date of that download in the R workspace. This feature was added in order to improve reproducibility, in the event that changes were made to the dataset files at the source since the last time the user accessed them.
 
 
 ##### Future goals for the script
 
-Currently, the complete execution of the script (with the downloading of the dataset) takes several minutes.  Improving efficiency would be a desired next step in the development of run_analysis.R.  It is possible that this would require additional packages such as dplyr or data.table.
-
-~~In the future, I also hope to have a better explanation of the "BodyBody" variables.~~
+Currently, the complete execution of the script (without the downloading of the dataset) takes just under 25 seconds on my system.  Improving efficiency would be a desired next step in the development of run_analysis.R.  It is possible that this would require additional packages such as dplyr or data.table; I am currently working on a version of the script that uses functions from both of the aforementioned packages.
 
 
-##### Helpful resources 
+
+##### Helpful resources and acknowledgements
 
 I would like to thank the many Coursera users posting helpful questions, comments, and answers on the discussion forums. 
 
@@ -100,11 +101,13 @@ The following links were also helpful in the development of this script and/or t
 - <a>http://daringfireball.net/projects/markdown/basics</a>
 - <a>http://stackoverflow.com/questions/6046263/how-to-indent-a-few-lines-in-markdown-markup </a>
 - <a>https://gist.github.com/JorisSchut/dbc1fc0402f28cad9b41</a>
+- <a>http://stackoverflow.com/questions/7653483/github-relative-link-in-markdown-file</a>
 - codebook inspiration:
 	- American Community Survey 2006 Data Dictionary (<a>http://www.census.gov/acs/www/Downloads/data_documentation/pums/DataDict/PUMSDataDict06.pdf</a>) 
 	
+This list of links is not comprehensive; there are undoubtedly other links that were helpful to me in understanding how to use R to complete this assignment. 
 
-The markdown editing software [Mou](http://25.io/mou/) and its help files, RStudio, R version 3.2.0 ("Full of Ingredients"), Microsoft Excel (for preliminary codebook organization), and Apple's TextEdit were used in the creation of this project.
+Additionally, the markdown editing software [Mou](http://25.io/mou/) and its help files, RStudio, R version 3.2.0 ("Full of Ingredients"), Microsoft Excel (for preliminary codebook organization), and Apple's TextEdit were used in the creation of this project.
 
 
 ---------------

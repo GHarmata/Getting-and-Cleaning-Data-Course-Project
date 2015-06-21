@@ -17,11 +17,11 @@ run_analysis <- function(..., download = "yes"){
     print("Data is loading, please wait...")
 
 
-    # B. Get features list and activites list
+    ### B. Get features list and activites list
     read.table("UCI HAR Dataset/features.txt")->features
     read.table("UCI HAR Dataset/activity_labels.txt", col.names = c("V1", "Activity_Type"))->activities
     
-    # C. Get test data and merge
+    ### C. Get test data and merge
     read.table("UCI HAR Dataset/test/subject_test.txt", col.names = "subject")->subjecttest
     read.table("UCI HAR Dataset/test/X_test.txt")->xtest
     read.table("UCI HAR Dataset/test/y_test.txt", col.names = "label")->ytest
@@ -32,7 +32,7 @@ run_analysis <- function(..., download = "yes"){
     
     rm(xtest, ytest, subjecttest)
     
-    # D. Get training data and merge
+    ### D. Get training data and merge
     
     read.table("UCI HAR Dataset/train/subject_train.txt", col.names = "subject")->subjecttrain
     read.table("UCI HAR Dataset/train/X_train.txt")->xtrain
@@ -91,8 +91,8 @@ run_analysis <- function(..., download = "yes"){
                             "f_body.Accel.Jerk_stdev.X","f_body.Accel.Jerk_stdev.Y",
                             "f_body.Accel.Jerk_stdev.Z","f_body.Gyro_stdev.X",
                             "f_body.Gyro_stdev.Y","f_body.Gyro_stdev.Z",
-                            "f_body.Accel.Mag_stdev","f_body.body.Accel.Jerk.Mag_stdev",
-                            "f_body.body.Gyro.Mag_stdev","f_body.body.Gyro.Jerk.Mag_stdev",
+                            "f_body.Accel.Mag_stdev","f_body.Accel.Jerk.Mag_stdev",
+                            "f_body.Gyro.Mag_stdev","f_body.Gyro.Jerk.Mag_stdev",
                             "t_body.Accel_mean.X","t_body.Accel_mean.Y",
                             "t_body.Accel_mean.Z","t_grav.Accel_mean.X",
                             "t_grav.Accel_mean.Y","t_grav.Accel_mean.Z",
@@ -113,12 +113,12 @@ run_analysis <- function(..., download = "yes"){
                             "f_body.Gyro_mean.Z","f_body.Gyro_meanFreq.X",
                             "f_body.Gyro_meanFreq.Y","f_body.Gyro_meanFreq.Z",
                             "f_body.Accel.Mag_mean","f_body.Accel.Mag_meanFreq",
-                            "f_body.body.Accel.Jerk.Mag_mean",
-                            "f_body.body.Accel.Jerk.Mag_meanFreq",
-                            "f_body.body.Gyro.Mag_mean","f_body.body.Gyro.Mag_meanFreq",
-                            "f_body.body.Gyro.Jerk.Mag_mean",
-                            "f_body.body.Gyro.Jerk.Mag_meanFreq",
-                            "angle__t_body.AccMean_grav",
+                            "f_body.Accel.Jerk.Mag_mean",
+                            "f_body.Accel.Jerk.Mag_meanFreq",
+                            "f_body.Gyro.Mag_mean","f_body.Gyro.Mag_meanFreq",
+                            "f_body.Gyro.Jerk.Mag_mean",
+                            "f_body.Gyro.Jerk.Mag_meanFreq",
+                            "angle__t_body.AccelMean_gravMean",
                             "angle__t_body.Accel.JerkMean_gravMean",
                             "angle__t_body.GyroMean_gravMean",
                             "angle__t_body.Gyro.JerkMean_gravMean","angle__X_gravMean",
@@ -127,8 +127,8 @@ run_analysis <- function(..., download = "yes"){
     # Goal 5: "From the data set in step 4, creates a second, independent tidy data set
     # with the average of each variable for each activity and each subject."
     
-    run_analysis_res <<- aggregate(df_merge2[,3:88], 
-                                   by = list(subject.ID = df_merge2$subject.ID, 
-                                             activity.type = df_merge2$activity.type), mean)
+    run_analysis_res <<- aggregate(df_merge[,3:88], 
+                                   by = list(subject.ID = df_merge$subject.ID, 
+                                             activity.type = df_merge$activity.type), mean)
     run_analysis_res
 }
